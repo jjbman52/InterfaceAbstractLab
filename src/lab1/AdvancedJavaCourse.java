@@ -12,8 +12,10 @@ public class AdvancedJavaCourse extends Course{
     private double credits;
     private String prerequisites;
 
-    public AdvancedJavaCourse(String courseName, String courseNumber) {
+    public AdvancedJavaCourse(String courseName, String courseNumber, double credits, String prerequisites) {
         super(courseName, courseNumber);
+        this.credits = credits;
+        this.prerequisites = prerequisites;
     }
 
     public String getPrerequisites() {
@@ -36,9 +38,9 @@ public class AdvancedJavaCourse extends Course{
 
     @Override
     public void setCredits(double credits) {
-        if(credits < 0.5 || credits > 4.0) {
+        if(credits < 3.0 || credits > 5.0) {
             JOptionPane.showMessageDialog(null,
-                    "Error: credits must be in the range 0.5 to 4.0");
+                    "Error: credits must be in the range 3.0 to 5.0");
             System.exit(0);
         }
         this.credits = credits;

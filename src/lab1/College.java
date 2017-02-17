@@ -12,6 +12,7 @@ public class College {
     
     public void addCourse(Course course){
         courses.add(course);
+        System.out.println("Course has been added.");
     }
 
     public List<Course> getCourses() {
