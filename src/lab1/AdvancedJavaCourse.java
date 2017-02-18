@@ -1,7 +1,5 @@
 package lab1;
 
-import javax.swing.JOptionPane;
-
 /**
  * Describe responsibilities here.
  *
@@ -11,9 +9,12 @@ import javax.swing.JOptionPane;
 public class AdvancedJavaCourse extends Course{
     private double credits;
     private String prerequisites;
+    private OutputService outputService = new OutputService();
+
 
     public AdvancedJavaCourse(String courseName, String courseNumber, double credits, String prerequisites) {
-        super(courseName, courseNumber);
+        setCourseName(courseName);
+        setCourseNumber(courseNumber);
         this.credits = credits;
         this.prerequisites = prerequisites;
     }
@@ -24,9 +25,7 @@ public class AdvancedJavaCourse extends Course{
 
     public void setPrerequisites(String prerequisites) {
         if(prerequisites == null || prerequisites.length() == 0) {
-            JOptionPane.showMessageDialog(null,
-                    "Error: prerequisites cannot be null of empty string");
-            System.exit(0);
+            outputService.doOutput("Error: prerequisites cannot be null of empty string");
         }
         this.prerequisites = prerequisites;
     }
@@ -39,9 +38,7 @@ public class AdvancedJavaCourse extends Course{
     @Override
     public void setCredits(double credits) {
         if(credits < 3.0 || credits > 5.0) {
-            JOptionPane.showMessageDialog(null,
-                    "Error: credits must be in the range 3.0 to 5.0");
-            System.exit(0);
+            outputService.doOutput("Error: credits must be in the range 3.0 to 5.0");
         }
         this.credits = credits;
     }

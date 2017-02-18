@@ -3,34 +3,20 @@ package lab2;
 /**
  * Describe responsibilities here.
  *
- * @author      your name goes here
+ * @author      Jordan Rehbein
  * @version     1.00
  */
-public class IntroJavaCourse {
-    String courseName;
-    private String courseNumber;
+public class IntroJavaCourse extends ProgrammingCourse{
     private double credits;
-    String prerequisites;
+    private String prerequisites;
+    private OutputService outputService = new OutputService();
 
-    public IntroJavaCourse(String courseName, String courseNumber) {
-        this.courseName = courseName;
-        this.courseNumber = courseNumber;
-    }
 
-    public String getCourseNumber() {
-        return courseNumber;
-    }
-
-    public void setCourseNumber(String courseNumber) {
-        this.courseNumber = courseNumber;
-    }
-
-    public double getCredits() {
-        return credits;
-    }
-
-    public void setCredits(double credits) {
+    public IntroJavaCourse(String courseName, String courseNumber, double credits, String prerequisites) {
+        setCourseName(courseName);
+        setCourseNumber(courseNumber);
         this.credits = credits;
+        this.prerequisites = prerequisites;
     }
 
     public String getPrerequisites() {
@@ -38,8 +24,22 @@ public class IntroJavaCourse {
     }
 
     public void setPrerequisites(String prerequisites) {
+        if(prerequisites == null || prerequisites.length() == 0) {
+            outputService.doOutput("Error: prerequisites cannot be null of empty string");
+        }
         this.prerequisites = prerequisites;
     }
 
-    
+    @Override
+    public double getCredits() {
+        return credits;
+    }
+
+    @Override
+    public void setCredits(double credits) {
+        if(credits < 0.5 || credits > 4.0) {
+            outputService.doOutput("Error: credits must be in the range 0.5 to 4.0");
+        }
+        this.credits = credits;
+    }
 }
